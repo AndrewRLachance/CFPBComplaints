@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# CFPB source data — large, downloadable, never committed.
+# Keep the provenance notes (complaints-data/README.md) but ignore everything else.
+complaints-data/*
+!complaints-data/README.md
+
+# Built SQLite database (regenerate with `npm run ingest`).
+data/
+
+# SQLite side files / build output
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.drizzle/
+dist/
+
+# Local config & logs
+.env
+.env.*
+*.log

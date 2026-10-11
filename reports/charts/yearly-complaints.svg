@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" role="img">
+  <rect width="720" height="320" fill="#ffffff" />
+  <line x1="64" y1="280.0" x2="700" y2="280.0" stroke="#e6e6e6" /><text x="56" y="284.0" text-anchor="end" font-family="sans-serif" font-size="11" fill="#666">0</text>
+  <line x1="64" y1="215.0" x2="700" y2="215.0" stroke="#e6e6e6" /><text x="56" y="219.0" text-anchor="end" font-family="sans-serif" font-size="11" fill="#666">1.4M</text>
+  <line x1="64" y1="150.0" x2="700" y2="150.0" stroke="#e6e6e6" /><text x="56" y="154.0" text-anchor="end" font-family="sans-serif" font-size="11" fill="#666">2.8M</text>
+  <line x1="64" y1="85.0" x2="700" y2="85.0" stroke="#e6e6e6" /><text x="56" y="89.0" text-anchor="end" font-family="sans-serif" font-size="11" fill="#666">4.2M</text>
+  <line x1="64" y1="20.0" x2="700" y2="20.0" stroke="#e6e6e6" /><text x="56" y="24.0" text-anchor="end" font-family="sans-serif" font-size="11" fill="#666">5.6M</text>
+  <rect x="72.0" y="279.9" width="23.8" height="0.1" fill="#2563eb" rx="2" /><text x="83.9" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2011</text>
+  <rect x="111.7" y="276.7" width="23.8" height="3.3" fill="#2563eb" rx="2" /><text x="123.6" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2012</text>
+  <rect x="151.4" y="275.0" width="23.8" height="5.0" fill="#2563eb" rx="2" /><text x="163.4" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2013</text>
+  <rect x="191.2" y="273.0" width="23.8" height="7.0" fill="#2563eb" rx="2" /><text x="203.1" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2014</text>
+  <rect x="230.9" y="272.3" width="23.8" height="7.7" fill="#2563eb" rx="2" /><text x="242.9" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2015</text>
+  <rect x="270.7" y="271.2" width="23.8" height="8.8" fill="#2563eb" rx="2" /><text x="282.6" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2016</text>
+  <rect x="310.4" y="268.8" width="23.8" height="11.2" fill="#2563eb" rx="2" /><text x="322.4" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2017</text>
+  <rect x="350.2" y="268.2" width="23.8" height="11.8" fill="#2563eb" rx="2" /><text x="362.1" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2018</text>
+  <rect x="389.9" y="267.2" width="23.8" height="12.8" fill="#2563eb" rx="2" /><text x="401.9" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2019</text>
+  <rect x="429.7" y="259.5" width="23.8" height="20.5" fill="#2563eb" rx="2" /><text x="441.6" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2020</text>
+  <rect x="469.4" y="257.2" width="23.8" height="22.8" fill="#2563eb" rx="2" /><text x="481.4" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2021</text>
+  <rect x="509.2" y="243.2" width="23.8" height="36.8" fill="#2563eb" rx="2" /><text x="521.1" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2022</text>
+  <rect x="549.0" y="220.5" width="23.8" height="59.5" fill="#2563eb" rx="2" /><text x="560.9" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2023</text>
+  <rect x="588.7" y="154.1" width="23.8" height="125.9" fill="#2563eb" rx="2" /><text x="600.6" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2024</text>
+  <rect x="628.5" y="29.4" width="23.8" height="250.6" fill="#2563eb" rx="2" /><text x="640.4" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2025</text>
+  <rect x="668.2" y="20.0" width="23.8" height="260.0" fill="#2563eb" rx="2" /><text x="680.1" y="306" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">2026</text>
+</svg>

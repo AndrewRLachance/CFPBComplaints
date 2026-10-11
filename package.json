@@ -1,0 +1,32 @@
+{
+  "name": "business-research",
+  "version": "1.0.0",
+  "description": "CFPB consumer complaints data access layer built with Drizzle ORM + SQLite (better-sqlite3)",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "mkdir -p data && drizzle-kit migrate",
+    "db:push": "mkdir -p data && drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "ingest": "tsx src/scripts/ingest.ts",
+    "companies": "tsx src/scripts/list-companies.ts",
+    "analyze": "tsx src/scripts/analyze.ts",
+    "smoke": "tsx src/scripts/smoke.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "csv-parse": "^7.0.3",
+    "drizzle-orm": "^0.45.4"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^26.6.5",
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
