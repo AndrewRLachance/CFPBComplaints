@@ -9,7 +9,7 @@
  *   tsx src/scripts/analyze.ts [--db <path>] [--out <report.md>]
  */
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 
 import { createDatabase, DEFAULT_DATABASE_PATH } from '../db/client.js';
@@ -23,10 +23,18 @@ function getArg(name: string): string | undefined {
   return index >= 0 ? process.argv[index + 1] : undefined;
 }
 
-const dbPath = getArg('--db') ?? DEFAULT_DATABASE_PATH;
+const dbPath = getArg('--db') ?? process.env.DATABASE_URL ?? DEFAULT_DATABASE_PATH;
 const outFile = resolve(getArg('--out') ?? 'reports/cfpb-complaints-analysis.md');
 const outDir = dirname(outFile);
 const chartsDir = join(outDir, 'charts');
+
+// Fail fast (and read-only) when there is nothing to analyse, instead of
+// surfacing a raw SQLite "unable to open database file" from deep below.
+if (dbPath !== ':memory:' && !existsSync(dbPath)) {
+  console.error(`Database not found: ${dbPath}`);
+  console.error('Build it first with `npm run ingest` (see README "Getting the data").');
+  process.exit(1);
+}
 
 /* -------------------------------------------------------------------------- */
 /*                                  connection                                */

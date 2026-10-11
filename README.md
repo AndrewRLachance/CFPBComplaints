@@ -235,6 +235,7 @@ src/repositories/            base + per-table repository classes
 src/ingest/                  CSV → normalised rows → DB
 src/scripts/ingest.ts        CLI loader
 src/scripts/analyze.ts       read-only analytics → reports/
+src/scripts/list-companies.ts  read-only company listing
 src/scripts/smoke.ts         end-to-end smoke test
 reports/                     generated analysis report + SVG charts (commit these)
 ```
@@ -249,8 +250,30 @@ reports/                     generated analysis report + SVG charts (commit thes
 | `npm run db:studio`   | Open Drizzle Studio                             |
 | `npm run ingest`      | Stream + load the CSV                           |
 | `npm run analyze`     | Generate the analysis report + SVG charts       |
+| `npm run companies`   | List every company name (read-only)             |
 | `npm run smoke`       | End-to-end assertions on an in-memory DB        |
 | `npm run typecheck`   | `tsc --noEmit`                                  |
+
+### Script safety
+
+The operational scripts are built to fail safe:
+
+- **`analyze` / `companies`** open the database **read-only** and exit with a
+  clear message (no database file created) if it has not been built yet. They
+  never mutate the dataset.
+- **`smoke`** runs entirely against an in-memory SQLite database — no files are
+  touched — so it is always safe to run.
+- **`ingest`** is idempotent (`onConflictDoNothing` on `complaint_id`), so
+  re-running it never duplicates rows. It validates `--limit` / `--batch` (a
+  typo now errors instead of silently loading all 18M rows) and checks the CSV
+  exists before opening the database.
+- **Bulk-load index handling is crash-safe.** `ingest` drops the seven
+  `complaints` indexes for speed, but restores them in a `finally` block and on
+  `SIGINT`/`SIGTERM`, so an error or Ctrl-C can never leave the table
+  unindexed. With `--keep-indexes` nothing is dropped.
+- **`db:push` rewrites the schema in place** and, on an existing populated
+  database, can drop columns/tables. Prefer `db:migrate`; treat `db:push` as a
+  development-only shortcut against a throwaway database.
 
 ## Configuration
 
