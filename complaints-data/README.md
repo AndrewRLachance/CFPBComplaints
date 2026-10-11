@@ -6,7 +6,8 @@ uncompressed / ~337 MB zipped) — only this note is tracked.
 
 ## Download
 
-The CFPB publishes a weekly bulk export of the full database:
+The CFPB generally updates the database daily and provides a bulk export of the
+full dataset:
 
 ```bash
 # from the repository root
@@ -28,8 +29,8 @@ That yields `complaints-data/complaints.csv`, which is the default input for
 
 ## Notes
 
-- The download refreshes weekly, so re-running it picks up newly published
-  complaints. Ingestion is idempotent (`onConflictDoNothing` on
-  `complaint_id`), so re-loading the same file is safe.
+- Re-running the download picks up newly published complaints. Ingestion is
+  idempotent (`onConflictDoNothing` on `complaint_id`), so re-loading the same
+  file is safe.
 - To use a file at another path, pass `--file <path>` to `npm run ingest` or
   set the path via `DATABASE_URL` for the database side.

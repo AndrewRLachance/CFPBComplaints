@@ -18,9 +18,9 @@ It ships the three things you asked for:
 
 ## Requirements
 
-- Node.js 20+ (developed on Node 24)
-- A C toolchain for `better-sqlite3`'s native binding (prebuilt binaries are
-  usually downloaded automatically)
+- Node.js 22+ (developed on Node 24; required by `better-sqlite3` 13.x)
+- On platforms without a bundled `better-sqlite3` binary, Python and a C/C++
+  build toolchain are also required
 
 ## Quickstart
 
@@ -51,7 +51,8 @@ Both the source CSV and `data/complaints.db` are git-ignored.
 ## Getting the data
 
 Neither the CFPB source CSV nor the built database is tracked in git. The CFPB
-publishes a weekly bulk export of the full database:
+generally updates the database daily and provides a bulk export of the full
+dataset:
 
 | | |
 | --- | --- |
@@ -67,10 +68,9 @@ curl -L -o complaints-data/complaints.csv.zip \
 unzip -o complaints-data/complaints.csv.zip -d complaints-data   # → complaints-data/complaints.csv
 ```
 
-Because the export refreshes weekly, re-running the download picks up newly
-published complaints. Ingestion is idempotent (`onConflictDoNothing` on
-`complaint_id`), so reloading the same file is safe. Use `--file <path>` with
-`npm run ingest` to point at a CSV elsewhere.
+Re-running the download picks up newly published complaints. Ingestion is
+idempotent (`onConflictDoNothing` on `complaint_id`), so reloading the same file
+is safe. Use `--file <path>` with `npm run ingest` to point at a CSV elsewhere.
 
 ## Schema
 
@@ -218,8 +218,9 @@ Headline findings from the current snapshot (18,329,250 complaints,
 
 - The three national credit bureaus dominate: **TransUnion, Equifax and Experian =
   78.5%** of all complaints (top 10 = 84.1%, HHI ≈ 2,068).
-- Credit-reporting products account for **~81%** of complaints; the single
-  largest issue is *"Incorrect information on your report"* (45.5%).
+- The three credit-reporting product categories account for **82.0%** of
+  complaints; the single largest issue is *"Incorrect information on your
+  report"* (45.5%).
 - Volume has grown steeply — 2024 → 2025 roughly **doubled** (2.73M → 5.44M).
 - Companies report a timely response in **99.4%** of complaints; the most common
   resolution is *Closed with explanation* (61.3%).
@@ -267,10 +268,11 @@ The operational scripts are built to fail safe:
   re-running it never duplicates rows. It validates `--limit` / `--batch` (a
   typo now errors instead of silently loading all 18M rows) and checks the CSV
   exists before opening the database.
-- **Bulk-load index handling is crash-safe.** `ingest` drops the seven
-  `complaints` indexes for speed, but restores them in a `finally` block and on
-  `SIGINT`/`SIGTERM`, so an error or Ctrl-C can never leave the table
-  unindexed. With `--keep-indexes` nothing is dropped.
+- **Bulk-load index handling includes interruption cleanup.** `ingest` drops
+  the seven `complaints` indexes for speed and attempts to restore them in a
+  `finally` block and on `SIGINT`/`SIGTERM`. A hard process kill, power loss, or
+  failed index rebuild can still leave them absent. With `--keep-indexes`
+  nothing is dropped.
 - **`db:push` rewrites the schema in place** and, on an existing populated
   database, can drop columns/tables. Prefer `db:migrate`; treat `db:push` as a
   development-only shortcut against a throwaway database.
