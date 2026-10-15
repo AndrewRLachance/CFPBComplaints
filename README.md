@@ -4,6 +4,9 @@ A typed, foundational data-access layer for the CFPB Consumer Complaint
 Database (~18.3M rows, ~5.5 GB CSV) built with the latest **Drizzle ORM**
 (`0.45.x`) on **SQLite** via **better-sqlite3**.
 
+This is intended to be used with arbitrary datasets.  
+The choice of ORM and the code structure are intended to ease extensibility and additional datasets by using AI or manually.
+
 > The CFPB source CSV and the built SQLite database are **not** committed —
 > they are large, regenerable downloads. See
 > [Getting the data](#getting-the-data) and
